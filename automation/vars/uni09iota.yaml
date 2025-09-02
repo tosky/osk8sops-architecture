@@ -12,7 +12,21 @@ vas:
             kind: Node
             resource_name: master-0
             state: patched
-        name: nncp-configuration
+        name: setup-environment
+        path: examples/dt/uni09iota/control-plane/setup
+        # FIXME!
+        wait_conditions:
+          - >-
+            oc -n openstack wait openstackversion
+            openstack
+            --for condition=Ready
+            --timeout=15m
+        values:
+          - name: extra-container-values
+            src_file: values.yaml
+        build_output: extra_containers.yaml
+
+      - name: nncp-configuration
         path: examples/dt/uni09iota/control-plane/networking/nncp
         wait_conditions:
           - >-

@@ -1,0 +1,8 @@
+apiVersion: core.openstack.org/v1beta1
+kind: OpenStackVersion
+metadata:
+  name: openstack
+spec:
+  customContainerImages:
+    cinderVolumeImages:
+      pure-fc: _replaced_
